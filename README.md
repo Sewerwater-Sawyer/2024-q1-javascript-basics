@@ -1,3 +1,3 @@
-# My Game is Cool!
+# My Java Script is Cool!
 
-Make sure you give it a good description here...
+Coming soon!
