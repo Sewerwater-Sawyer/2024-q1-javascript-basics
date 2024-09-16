@@ -1,30 +1,61 @@
 //@ts-check
 
 let playerControls = document.getElementById("player-controls");
-let btnRock = document.getElementById("btn-rock");
-let btnPaper = document.getElementById("btn-paper");
-let btnScissors = document.getElementById("btn-scissors");
 
-// function rockClicked(name) {
-//     console.log("rock, was selected");
-// }
+let isGameOver = false
 
-// btnRock?.addEventListener("click", rockClicked);
+let weapons = [
+    {
+        type: "Rock",
+        beats: "Scissors"
+    },
+    {
+        type: "Paper",
+        beats: "Rock"
+    },
+    {
+        type: "Scissors",
+        beats: "Paper"
+    }
+];
 
-// function paperClicked(name) {
-//     console.log("paper, was selected");
-// }
+function pickRandomWeapons(weapons) {
+    let rnjesus = Math.floor(Math.random() * weapons.length);
+    return weapons[rnjesus];
+}
 
-// btnPaper?.addEventListener("click", paperClicked);
+function determineOutCome(playerWeapon, computerWeapon) {
+    if (playerWeapon.type === computerWeapon.type) {
+        return "Its a tie! Try again";
+    }
 
-//  function scissorsClicked(name) {
-//     console.log("scissors, was selected");
-// }
+    if (playerWeapon.beats === computerWeapon.type) {
+        
+        isGameOver = true;
 
-// btnScissors?.addEventListener("click", scissorsClicked);
+        return `Player wins! ${playerWeapon.type} beats ${computerWeapon.type}`;
+    }
 
-function playerControlHandler(e) {
+    return `Computer wins! ${computerWeapon.type} beats ${playerWeapon.type}`;
+}
+
+ function playerControlHandler(e) {
+//     if(isGameOver) {
+//         return;
+//    }
+
     let weaponName = e.target.innerText;
+    let playerWeapon = weapons.find(w => w.type === weaponName);
+
+    if (!playerWeapon) {
+        console.log("ERROR! Player weapon undefined");
+        return;
+    }
+
+
+
+    console.log(result);
+
     console.log(weaponName,  "was selected");
 }
 
