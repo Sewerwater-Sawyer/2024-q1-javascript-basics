@@ -1,4 +1,6 @@
 //@ts-check
+import { SquareShape } from "./shapes/square.js";
+
 /** @type {HTMLCanvasElement} */
 //@ts-ignore canvas is an HTMLCanvasElement
 const canvas = document.getElementById("game-canvas");
@@ -7,45 +9,29 @@ const canvas = document.getElementById("game-canvas");
 //@ts-ignore ctx is an CanvasRenderingContext2D
 const ctx = canvas.getContext("2d");
 
-class SquareShape {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
+let s1 = new SquareShape(0, 0, ctx, canvas);
 
-        this.width = 50;
-        this.height = this.width;
-        this.hue = 0;
-        
-        this.speedMult = 11;
-        this.speedx = Math.floor(Math.random() * this.speedMult) + 1;
-        this.speedy = Math.floor(Math.random() * this.speedMult) + 1;
+let shapes = [];
 
-    }
-
-    update() {
-        this.x += this.speedx;
-        this.y += this.speedy;
-        this.hue++;
-    }
-
-    draw() {
-        ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, 100%)`;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
+for (let i = 0; i < 100000; i++) {
+    shapes.push(new SquareShape(0, 0, ctx, canvas));
 }
-
-let s1 = new SquareShape(0, 0);
 
 
 let lastTime = 0;
 
 function drawLoop(timestamp) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    //ctx.clearRect(0, 0, canvas.width, canvas.height)
     let elapsedTime = timestamp - lastTime
     lastTime = timestamp;
 
-    s1.draw();
+    s1.draw();       
     s1.update();
+
+    for (const shape of shapes) {
+        shape.update();
+        shape.draw();
+    }
 
     window.requestAnimationFrame(drawLoop);
 }
