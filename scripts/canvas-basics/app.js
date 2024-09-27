@@ -1,5 +1,5 @@
 //@ts-check
-import { SquareShape } from "./shapes/square.js";
+import { CircleShape, SquareShape } from "./shapes/square.js";
 
 /** @type {HTMLCanvasElement} */
 //@ts-ignore canvas is an HTMLCanvasElement
@@ -9,11 +9,18 @@ const canvas = document.getElementById("game-canvas");
 //@ts-ignore ctx is an CanvasRenderingContext2D
 const ctx = canvas.getContext("2d");
 
+let s2 = new CircleShape(0, 0, ctx, canvas, Math.PI) 
+
+for (let i = 0; i < 0; i++) {
+    shapes.push(new CircleShape(0, 0, ctx, canvas, Math.PI));
+}
+
+
 let s1 = new SquareShape(0, 0, ctx, canvas);
 
 let shapes = [];
 
-for (let i = 0; i < 0; i++) {
+for (let i = 0; i < 100; i++) {
     shapes.push(new SquareShape(0, 0, ctx, canvas));
 }
 
@@ -21,7 +28,7 @@ for (let i = 0; i < 0; i++) {
 let lastTime = 0;
 
 function drawLoop(timestamp) {
-    //ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     let elapsedTime = timestamp - lastTime
     lastTime = timestamp;
 
