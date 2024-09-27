@@ -13,7 +13,7 @@ let s1 = new SquareShape(0, 0, ctx, canvas);
 
 let shapes = [];
 
-for (let i = 0; i < 100000; i++) {
+for (let i = 0; i < 0; i++) {
     shapes.push(new SquareShape(0, 0, ctx, canvas));
 }
 

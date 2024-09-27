@@ -7,11 +7,11 @@ export class SquareShape {
         this.ctx = ctx;
         this.canvas = canvas;
 
-        this.width = 50;
-        this.height = this.width;
+        this.width = 1000;
+        this.height = 1000;
         this.hue = 0;
         
-        this.speedMult = 11;
+        this.speedMult = 100;
         this.speedx = Math.floor(Math.random() * this.speedMult) + 1;
         this.speedy = Math.floor(Math.random() * this.speedMult) + 1;
         this.dirx = 1;
@@ -47,6 +47,6 @@ export class SquareShape {
 
     draw() {
         this.ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, 100%)`;
-        this.ctx.fillRect(this.x, this.y, 5, 5);
+        this.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
